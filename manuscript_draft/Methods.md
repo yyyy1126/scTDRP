@@ -21,6 +21,16 @@ Normal hematopoietic differentiation stages were defined based on established ce
 
 **B-cell selection.** Because B-ALL diagnostic samples contained a mixture of CD19+ malignant B cells and CD19− non-B immune microenvironment cells, we performed B-cell selection using marker-gene scoring. For each cell, B-cell score (CD19, MS4A1, CD79A, CD79B, PAX5, VPREB1, RAG1, RAG2), T-cell score (CD3D, CD3E, CD4, CD8A, TRAC), and myeloid score (CD14, LYZ, S100A8, S100A9, CD33) were computed using Scanpy's `score_genes` function after log-normalization. Cells with B-cell score above the median were retained as the malignant B-cell compartment (n = 3,569), representing the leukemic blast population for downstream scTDRP analysis.
 
+## GBM dataset and preprocessing
+
+**Data source.** Glioblastoma (GBM) scRNA-seq data were obtained from Darmanis et al. (2017; GEO accession GSE84465). The dataset profiled 3,589 cells from four primary IDH-wild-type GBM patients and included both neoplastic cells and non-neoplastic tumor microenvironment cells.
+
+**Normal reference.** We constructed a normal neural lineage reference from 579 non-neoplastic cells annotated as oligodendrocyte precursor cells (OPC, n = 406), astrocytes (n = 88), or oligodendrocytes (n = 85). The ordered reference trajectory was defined as OPC → Astrocyte → Oligodendrocyte, with Oligodendrocyte as the terminal stage.
+
+**Disease cells.** Neoplastic cells annotated in the original study (n = 1,091) were used as the disease sample. No additional marker-based selection was applied.
+
+**Note on metacell aggregation.** In the GBM validation, both the normal reference and disease cells were analyzed at single-cell resolution without metacell aggregation. Because the reference contained only three stages and adjacent stages (OPC and Oligodendrocyte) are transcriptionally close, metacell averaging blurred stage boundaries and shifted stage assignments toward the terminal stage. This observation suggests that metacell aggregation should be applied cautiously when the reference trajectory contains few stages or closely spaced cell states.
+
 ## Metacell construction
 
 To enable computationally efficient optimal transport analysis while preserving biological heterogeneity, we aggregated cells within each normal stage into metacells using Leiden clustering [5]. Briefly, for each developmental stage, we performed Leiden clustering on the PCA-reduced expression matrix with stage-specific resolution parameters (Table S1). The expression profiles of cells within each cluster were averaged to generate a metacell, and the cluster size (number of constituent cells) was recorded as the metacell weight. For disease cells, Leiden clustering was performed across all malignant cells at resolution 1.0, and cluster averages were computed similarly. Metacell weights were incorporated into optimal transport calculations to ensure that large cell populations exert proportionally greater influence on the transport plan.

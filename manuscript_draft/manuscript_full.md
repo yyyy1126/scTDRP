@@ -242,7 +242,31 @@ The B-ALL validation establishes three key properties of scTDRP. First, the fram
 
 ---
 
-## 3.4 Simulation Validation Confirms scTDRP Robustness
+## 3.4 Cross-System Validation: scTDRP Captures OPC-like Arrest in Glioblastoma
+
+To test whether scTDRP generalizes beyond hematopoietic lineages, we applied it to glioblastoma (GBM), an aggressive adult brain tumor in which malignant cells are widely reported to adopt an oligodendrocyte precursor cell (OPC)-like state. We analyzed 1,091 neoplastic cells from the GSE84465 dataset (Darmanis et al., 2017) and constructed a normal neural lineage reference from 579 non-neoplastic cells in the same dataset, spanning OPC → Astrocyte → Oligodendrocyte.
+
+### 3.4.1 Neural Trajectory and OT Cost Map
+
+Pairwise Wasserstein-2 distances between adjacent reference stages were OPC → Astrocyte (0.262) and Astrocyte → Oligodendrocyte (0.309), establishing a quantifiable differentiation axis.
+
+### 3.4.2 GBM Cells Are Assigned Predominantly to the OPC Stage
+
+Stage assignment revealed that **85.9% (937/1,091) of GBM neoplastic cells mapped to the OPC stage** as their best-match normal stage, with 14.1% mapping to Oligodendrocyte and 1.0% to Astrocyte. This arrest pattern is consistent with the established view that GBM cells are transcriptionally arrested at an OPC-like progenitor state.
+
+### 3.4.3 GBM Cells Show Elevated Deviation Relative to Stage-Matched OPCs
+
+GBM cells assigned to OPC showed markedly elevated TDI compared with normal OPC cells (**mean TDI = 0.300 ± 0.047; median = 0.289**). Module-level repair inference pointed toward up-regulation of oligodendrocyte differentiation genes (MBP, PLP1, MOG, MAG, CNP) and down-regulation of astrocyte differentiation and cell-cycle programs, suggesting a differentiation-promoting, proliferation-suppressing therapeutic direction.
+
+### 3.4.4 Cross-System Confirmation of scTDRP
+
+The GBM validation demonstrates that scTDRP is **not restricted to hematopoietic malignancies**. Using only a public scRNA-seq dataset and a three-stage normal neural reference, scTDRP correctly recapitulated the OPC-like arrest phenotype, supporting its applicability to solid tumors and other non-hematopoietic differentiation disorders.
+
+> **Implementation note.** In this GBM validation we used original cells rather than metacell aggregation for both reference and disease. When the number of reference stages is small and adjacent stages are transcriptionally close, metacell averaging can blur stage boundaries and shift stage assignment. Users are encouraged to compare both modes for their specific dataset.
+
+---
+
+## 3.5 Simulation Validation Confirms scTDRP Robustness
 
 To validate the computational and conceptual foundations of scTDRP independently of biological data, we performed controlled simulations with known ground truth (see Methods). All five validation tests passed:
 

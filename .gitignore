@@ -23,6 +23,7 @@ wheels/
 .ipynb_checkpoints
 
 # Data
+data/
 *.h5ad
 *.hdf5
 *.h5
