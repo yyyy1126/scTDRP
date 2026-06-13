@@ -1,0 +1,53 @@
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Jupyter
+.ipynb_checkpoints
+
+# Data
+*.h5ad
+*.hdf5
+*.h5
+*.loom
+
+# Outputs
+results/
+results_*/
+figures/
+figures_*/
+output/
+run.log
+*.log
+
+# Manuscript drafts and papers (large PDFs)
+manuscript_draft/*.pdf
+manuscript_draft/*.png
+papers/*.pdf
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
