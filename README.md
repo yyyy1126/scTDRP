@@ -327,7 +327,7 @@ scTDRP/
 
 > scTDRP: single-cell Transcriptomic Developmental Repair Potential.  
 > GitHub: https://github.com/yyyy1126/scTDRP  
-> Zenodo DOI: https://doi.org/10.5281/zenodo.20674237
+> Zenodo DOI: https://doi.org/10.5281/zenodo.15640823
 
 ## NC 投稿冲刺方案
 
@@ -411,7 +411,7 @@ scTDRP 的方法概念（disease-to-normal optimal transport + repair inference�
   - [ ] 清晰 README + 安装说明
   - [ ] Quick-start notebook
   - [ ] 每个 figure 的复现脚本
-- [x] Zenodo 归档（DOI: https://doi.org/10.5281/zenodo.20674237）
+- [x] Zenodo 归档（DOI: https://doi.org/10.5281/zenodo.15640823）
 - [ ] 单元测试 + CI
   - [ ] OT 距离非负
   - [ ] 传输计划归一化和为 1

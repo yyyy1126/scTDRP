@@ -99,7 +99,7 @@ For the GBM cross-system validation, we additionally ran two independent optimal
 
 ## Software availability
 
-scTDRP is implemented as a Python package with modular components for distance computation, repair pathway inference, and visualization. The source code, analysis notebooks, and processed data are available at https://github.com/yyyy1126/scTDRP and archived at Zenodo (DOI: https://doi.org/10.5281/zenodo.20674237).
+scTDRP is implemented as a Python package with modular components for distance computation, repair pathway inference, and visualization. The source code, analysis notebooks, and processed data are available at https://github.com/yyyy1126/scTDRP and archived at Zenodo (DOI: https://doi.org/10.5281/zenodo.15640823).
 
 ## References
 

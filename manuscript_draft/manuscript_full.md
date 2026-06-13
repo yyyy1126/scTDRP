@@ -129,7 +129,7 @@ All optimal transport computations were performed using POT v0.9.6 [8]. Statisti
 
 ## Software availability
 
-scTDRP is implemented as a Python package with modular components for distance computation, repair pathway inference, and visualization. The source code, analysis notebooks, and processed data are available at https://github.com/yyyy1126/scTDRP and archived at Zenodo (DOI: https://doi.org/10.5281/zenodo.20674237).
+scTDRP is implemented as a Python package with modular components for distance computation, repair pathway inference, and visualization. The source code, analysis notebooks, and processed data are available at https://github.com/yyyy1126/scTDRP and archived at Zenodo (DOI: https://doi.org/10.5281/zenodo.15640823).
 
 ## References
 
@@ -155,6 +155,8 @@ We developed scTDRP (single-cell Transcriptomic Developmental Repair Potential),
 ---
 
 ## 3.1 scTDRP Reveals Arrested Erythroid Differentiation in Acute Erythroid Leukemia
+
+The scTDRP workflow and its initial application to AEL are summarized in Figure 1.
 
 ### 3.1.1 Dataset and Normal Trajectory Construction
 
@@ -289,6 +291,13 @@ These simulations establish that scTDRP's core computations are mathematically s
 ---
 
 ## Figure Legends
+
+**Figure 1. scTDRP Overview and Application to Acute Erythroid Leukemia.**
+(A) Workflow schematic. scTDRP takes a normal developmental reference and disease cells as input, builds an OT cost map between adjacent normal stages, assigns each disease cell to its nearest normal stage via the Transcriptomic Deviation Index (TDI), infers a gene-level repair pathway toward the terminal stage, and aggregates repair deltas into module-level therapeutic strategies.
+(B) OT cost map for normal erythropoiesis. Heatmap shows pairwise Wasserstein-2 distances between adjacent stages (megakaryocyte-erythroid progenitor, MEP, to orthochromatic erythroblast). Annotated values are adjacent-stage distances; non-adjacent and diagonal cells are masked.
+(C) TDI distribution comparing 1,943 AEL malignant erythroid cells (red) to cells from each normal erythroid stage (blue). AEL cells show markedly higher deviation than stage-matched normal cells, indicating differentiation arrest.
+(D) Gene-level repair heatmap showing the top 15 up-regulated (red) and top 15 down-regulated (blue) repair targets inferred from the OT transport plan from AEL cells to the orthochromatic erythroblast stage.
+(E) Module-level repair strategy. P7_TerminalPrep module is recommended for up-regulation (repair score +0.186) and P8_ExecutionPrecursor module for down-regulation (repair score −0.153).
 
 **Figure 2. scTDRP Analysis of Acute Erythroid Leukemia.**
 (A) OT Cost Map showing pairwise Wasserstein-2 distances between adjacent erythroid stages in normal differentiation. Distances decrease from early to terminal stages, reflecting progressive transcriptional convergence.
