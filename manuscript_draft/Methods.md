@@ -81,7 +81,7 @@ All optimal transport computations were performed using POT v0.9.6 [8]. Statisti
 
 ## Software availability
 
-scTDRP is implemented as a Python package with modular components for distance computation, repair pathway inference, and visualization. The source code, analysis notebooks, and processed data are available at [GitHub repository URL] and archived at Zenodo.
+scTDRP is implemented as a Python package with modular components for distance computation, repair pathway inference, and visualization. The source code, analysis notebooks, and processed data are available at https://github.com/yyyy1126/scTDRP and archived at Zenodo (DOI: https://doi.org/10.5281/zenodo.20674237).
 
 ## References
 
