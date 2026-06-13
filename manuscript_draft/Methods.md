@@ -89,6 +89,14 @@ where $G_m$ is the set of genes belonging to module $m$. Modules with positive s
 
 All optimal transport computations were performed using POT v0.9.6 [8]. Statistical significance of stage attribution was assessed using permutation tests (1,000 permutations). For survival-relevant biomarkers identified in the erythroid lineage, Kaplan-Meier survival curves were compared using the log-rank test. All analyses were performed in Python 3.10 with Scanpy v1.9, AnnData v0.8, NumPy v1.23, and SciPy v1.10.
 
+## Comparison with WaddingtonOT and Moscot
+
+For the GBM cross-system validation, we additionally ran two independent optimal-transport frameworks on the identical PCA embedding and cell labels to benchmark scTDRP's numerical consistency.
+
+**WaddingtonOT.** We used WOT v1.0 with `day_field="day"`, `local_pca=0` (so that the provided 50-dimensional PCA embedding was used directly), `epsilon=0.05`, `lambda1=1`, and `lambda2=50`. Disease cells were assigned day 0 and terminal-stage oligodendrocytes day 1; the resulting transport map was row-normalized to infer the expected terminal PCA coordinate for each disease cell, from which the repair direction was computed as the difference to the disease cell's original PCA coordinate. For stage assignment, all normal cells (OPC, Astrocyte, Oligodendrocyte) were assigned day 1 and the transport mass to each stage was summed per disease cell; the stage with the largest mass was taken as the WOT best-match stage.
+
+**Moscot.** We used moscot v0.5.0 `TemporalProblem` with `time_key="day"` and `joint_attr="X_pca"`, solved with `epsilon=0.01`. Cell transitions from day 0 (disease) to day 1 (normal) were aggregated by stage to obtain stage probabilities. Repair direction was obtained by pulling the terminal-stage PCA coordinates back onto disease cells through the solved OT coupling.
+
 ## Software availability
 
 scTDRP is implemented as a Python package with modular components for distance computation, repair pathway inference, and visualization. The source code, analysis notebooks, and processed data are available at https://github.com/yyyy1126/scTDRP and archived at Zenodo (DOI: https://doi.org/10.5281/zenodo.20674237).

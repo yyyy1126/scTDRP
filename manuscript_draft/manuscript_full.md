@@ -262,6 +262,14 @@ GBM cells assigned to OPC showed markedly elevated TDI compared with normal OPC 
 
 The GBM validation demonstrates that scTDRP is **not restricted to hematopoietic malignancies**. Using only a public scRNA-seq dataset and a three-stage normal neural reference, scTDRP correctly recapitulated the OPC-like arrest phenotype, supporting its applicability to solid tumors and other non-hematopoietic differentiation disorders.
 
+### 3.4.5 Consistency with WaddingtonOT and Moscot
+
+To ensure that scTDRP's conclusions are not an artifact of its specific implementation, we compared stage assignment and repair direction against two widely used single-cell optimal transport frameworks: **WaddingtonOT (WOT)** and **Moscot**.
+
+**Stage assignment.** WOT assigned **84.0%** of GBM cells to OPC, closely matching scTDRP's 85.9% (exact agreement 73.1%). Moscot assigned 72.2% to OPC (exact agreement 65.7%); its slightly more dispersed distribution likely reflects Moscot's built-in birth-death regularization, which allows mass creation/annihilation and can soften sharp stage assignments.
+
+**Repair direction.** We inferred the disease-to-terminal (Oligodendrocyte) repair vector for each cell in PCA space. scTDRP and WOT yielded virtually identical directions (**mean cosine similarity = 0.9999, Pearson r = 0.9999**), confirming that scTDRP's repair inference is numerically consistent with an independent POT/Sinkhorn implementation. The scTDRP-Moscot repair direction correlation was positive but lower (**mean cosine similarity = 0.51, Pearson r = 0.53**), consistent with differences in solver backend (OTT-JAX vs POT) and regularization strategy.
+
 > **Implementation note.** In this GBM validation we used original cells rather than metacell aggregation for both reference and disease. When the number of reference stages is small and adjacent stages are transcriptionally close, metacell averaging can blur stage boundaries and shift stage assignment. Users are encouraged to compare both modes for their specific dataset.
 
 ---
